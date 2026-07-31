@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "heather-mob-effects",
+  "version": "${version}",
+  "name": "HeatherMobEffects",
+  "description": "Adds new mob effects commonly used in Heather events.",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/heather-mob-effects/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "org.heather.effects.client.HeatherMobEffectsClient"
+    ],
+    "main": [
+      "org.heather.effects.HeatherMobEffects"
+    ]
+  },
+  "mixins": [
+    "heather-mob-effects.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
