@@ -1,0 +1,105 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "team.heather.cataclysm",
+    "module": "cataclysmic-effects",
+    "version": "1.2-1.21.5",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.6.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "net.fabricmc.fabric-api",
+          "module": "fabric-api",
+          "version": {
+            "requires": "0.128.2+1.21.5"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cataclysmic-effects-1.2-1.21.5.jar",
+          "url": "cataclysmic-effects-1.2-1.21.5.jar",
+          "size": 62077,
+          "sha512": "dbb3bcfde366e62f8537a39abe241f3ff2edfa2e7bb67dc4688b140970052784f1dadca781ed7f712ae215bafe1b86add929a96ff4cf8f9eef7d12838fcff8a6",
+          "sha256": "5603e707eb8a588cd1399806cd252fcb2ca810155f46c73c15a92c5d5c978eff",
+          "sha1": "4c808bea3e8492d01ff3f36f87a516e223f07d06",
+          "md5": "247db9059aa94569aa7e4aa5a5b6952d"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "net.fabricmc.fabric-api",
+          "module": "fabric-api",
+          "version": {
+            "requires": "0.128.2+1.21.5"
+          }
+        },
+        {
+          "group": "net.fabricmc",
+          "module": "fabric-loader",
+          "version": {
+            "requires": "0.19.3"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cataclysmic-effects-1.2-1.21.5.jar",
+          "url": "cataclysmic-effects-1.2-1.21.5.jar",
+          "size": 62077,
+          "sha512": "dbb3bcfde366e62f8537a39abe241f3ff2edfa2e7bb67dc4688b140970052784f1dadca781ed7f712ae215bafe1b86add929a96ff4cf8f9eef7d12838fcff8a6",
+          "sha256": "5603e707eb8a588cd1399806cd252fcb2ca810155f46c73c15a92c5d5c978eff",
+          "sha1": "4c808bea3e8492d01ff3f36f87a516e223f07d06",
+          "md5": "247db9059aa94569aa7e4aa5a5b6952d"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "cataclysmic-effects-1.2-1.21.5-sources.jar",
+          "url": "cataclysmic-effects-1.2-1.21.5-sources.jar",
+          "size": 43511,
+          "sha512": "06075286c7e9fd9f679294fb331aad331760260ebba2fccc2ddc8fb363d666aa96d6d416f5bdc922073b946bdb8fbdabccb700a176c6552e8af32c85015eb72b",
+          "sha256": "bb72b3be945e885ce88c7b42348af709b9730b4ff2e5312b4d563411c66d73ca",
+          "sha1": "8b65aec8962e251b17dd3a0e2b6534f463fbd374",
+          "md5": "2cb3be31f3e6e374b6b54de0ae83bafd"
+        }
+      ]
+    }
+  ]
+}

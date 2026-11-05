@@ -18,7 +18,7 @@ dependencies {
 }
 ```
 
-Use `cataclysmic_effects_version=1.1.1-1.21.5` in `gradle.properties`, and drop the
+Use `cataclysmic_effects_version=1.2-1.21.5` in `gradle.properties`, and drop the
 `include` line if your mod should not bundle this one.
 
 The effects are available as holders in `CataclysmicMobEffects`:
@@ -51,6 +51,7 @@ The remaining callbacks belong to a specific effect:
 
 | Effect | Callbacks |
 | --- | --- |
+| Cleansing | `AllowCleansingCallback` |
 | Mortem | `AllowMortemTotemBlockCallback`, `MortemTotemBlockedCallback` |
 | Pale Corrosion | `AllowPaleCorrosionCallback`, `PaleCorrosionHeartDisabledCallback`, `PaleCorrosionHeartsRestoredCallback` |
 | Vulnerability | `ModifyVulnerabilityDamageCallback` |

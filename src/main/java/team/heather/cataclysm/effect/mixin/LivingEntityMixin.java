@@ -1,5 +1,6 @@
 package team.heather.cataclysm.effect.mixin;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -16,6 +17,7 @@ import team.heather.cataclysm.effect.api.callback.MobEffectAddedCallback;
 import team.heather.cataclysm.effect.api.callback.MobEffectRemovedCallback;
 import team.heather.cataclysm.effect.api.callback.MobEffectUpdatedCallback;
 import team.heather.cataclysm.effect.effect.CataclysmicMobEffects;
+import team.heather.cataclysm.effect.effect.beneficial.CleansingMobEffect;
 import team.heather.cataclysm.effect.effect.harmful.MortemMobEffect;
 import team.heather.cataclysm.effect.effect.harmful.PaleCorrosionMobEffect;
 import team.heather.cataclysm.effect.effect.harmful.VulnerabilityMobEffect;
@@ -43,6 +45,24 @@ public abstract class LivingEntityMixin {
             if (effect.is(CataclysmicMobEffects.PALE_CORROSION)) {
                 PaleCorrosionMobEffect.restoreHearts((LivingEntity) (Object) this);
             }
+        }
+    }
+
+    @Inject(method = "tickEffects", at = @At("HEAD"))
+    private void cataclysm$cleanseEffects(CallbackInfo ci) {
+        LivingEntity entity = (LivingEntity) (Object) this;
+
+        if (entity.level() instanceof ServerLevel level) {
+            CleansingMobEffect.cleanseEffects(level, entity);
+        }
+    }
+
+    @Inject(method = "canBeAffected", at = @At("HEAD"), cancellable = true)
+    private void cataclysm$blockCleansedEffect(MobEffectInstance effect, CallbackInfoReturnable<Boolean> cir) {
+        LivingEntity entity = (LivingEntity) (Object) this;
+
+        if (!entity.level().isClientSide && CleansingMobEffect.blocks(entity, effect)) {
+            cir.setReturnValue(false);
         }
     }
 
