@@ -11,6 +11,9 @@ import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import team.heather.cataclysm.effect.CataclysmicEffectsMod;
+import team.heather.cataclysm.effect.api.callback.AllowPaleCorrosionCallback;
+import team.heather.cataclysm.effect.api.callback.PaleCorrosionHeartDisabledCallback;
+import team.heather.cataclysm.effect.api.callback.PaleCorrosionHeartsRestoredCallback;
 
 /**
  * Disables half a heart of the affected entity each time the effect ticks.
@@ -43,7 +46,8 @@ public class PaleCorrosionMobEffect extends MobEffect {
     public boolean applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
         AttributeInstance maxHealth = entity.getAttribute(Attributes.MAX_HEALTH);
 
-        if (maxHealth == null || entity.getMaxHealth() - DISABLED_HEALTH_PER_TICK < MIN_MAX_HEALTH) {
+        if (maxHealth == null || entity.getMaxHealth() - DISABLED_HEALTH_PER_TICK < MIN_MAX_HEALTH
+                || !AllowPaleCorrosionCallback.EVENT.invoker().allowCorrosion(entity, amplifier)) {
             return true;
         }
 
@@ -54,6 +58,7 @@ public class PaleCorrosionMobEffect extends MobEffect {
 
         sendParticles(level, entity);
         playSounds(level, entity);
+        PaleCorrosionHeartDisabledCallback.EVENT.invoker().onHeartDisabled(entity, amplifier, (float) disabledHealth);
         return true;
     }
 
@@ -84,9 +89,10 @@ public class PaleCorrosionMobEffect extends MobEffect {
      */
     public static void restoreHearts(LivingEntity entity) {
         AttributeInstance maxHealth = entity.getAttribute(Attributes.MAX_HEALTH);
+        float restoredHealth = getDisabledHealth(entity);
 
-        if (maxHealth != null) {
-            maxHealth.removeModifier(MODIFIER_ID);
+        if (maxHealth != null && maxHealth.removeModifier(MODIFIER_ID)) {
+            PaleCorrosionHeartsRestoredCallback.EVENT.invoker().onHeartsRestored(entity, restoredHealth);
         }
     }
 

@@ -4,7 +4,8 @@
   "package": "team.heather.cataclysm.effect.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "LivingEntityMixin"
+    "LivingEntityMixin",
+    "MobEffectInstanceMixin"
   ],
   "client": [
     "HudMixin"

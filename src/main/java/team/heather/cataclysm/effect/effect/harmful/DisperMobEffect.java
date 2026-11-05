@@ -3,6 +3,7 @@ package team.heather.cataclysm.effect.effect.harmful;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffect;
@@ -10,6 +11,9 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import team.heather.cataclysm.effect.api.callback.AllowDisperCallback;
+import team.heather.cataclysm.effect.api.callback.DisperBlockDestroyedCallback;
 import team.heather.cataclysm.effect.effect.CataclysmicMobEffects;
 import team.heather.cataclysm.effect.effect.MobEffectProcessor;
 
@@ -47,12 +51,19 @@ public class DisperMobEffect extends MobEffect {
      *         otherwise, {@code false}
      */
     public static boolean tryApply(Player player, BlockPos blockPos) {
+        if (player instanceof ServerPlayer serverPlayer && serverPlayer.hasEffect(CataclysmicMobEffects.DISPER)
+                && !AllowDisperCallback.EVENT.invoker().allowDisper(serverPlayer, blockPos)) {
+            return false;
+        }
+
         return MobEffectProcessor.handle(player, CataclysmicMobEffects.DISPER, serverPlayer -> {
             ServerLevel level = serverPlayer.serverLevel();
+            BlockState state = level.getBlockState(blockPos);
 
             level.destroyBlock(blockPos, true, serverPlayer);
             sendParticles(level, blockPos);
             playSounds(level, blockPos);
+            DisperBlockDestroyedCallback.EVENT.invoker().onBlockDestroyed(serverPlayer, blockPos, state);
         });
     }
 
