@@ -1,11 +1,11 @@
-package org.heather.cataclysmiceffects.internal;
+package team.heather.cataclysm.effect;
 
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.heather.cataclysmiceffects.CataclysmicMobEffects;
-import org.heather.cataclysmiceffects.MobEffectProcessor;
+import team.heather.cataclysm.effect.effect.CataclysmicMobEffects;
+import team.heather.cataclysm.effect.effect.MobEffectProcessor;
 
 public final class CataclysmicEffectsMod implements ModInitializer {
 
@@ -20,7 +20,7 @@ public final class CataclysmicEffectsMod implements ModInitializer {
         LOGGER.debug("Initialized.");
     }
 
-    public static Identifier createIdentifier(String path) {
-        return Identifier.fromNamespaceAndPath(MOD_ID, path);
+    public static ResourceLocation createIdentifier(String path) {
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }
 }

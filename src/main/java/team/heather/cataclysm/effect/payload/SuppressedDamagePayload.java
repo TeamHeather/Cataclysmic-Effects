@@ -1,4 +1,4 @@
-package org.heather.cataclysmiceffects.payload;
+package team.heather.cataclysm.effect.payload;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -9,9 +9,8 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import org.heather.cataclysmiceffects.CataclysmicEffectsMod;
-import org.heather.cataclysmiceffects.client.ImmortalityHeartFeedback;
-import org.jspecify.annotations.NonNull;
+import team.heather.cataclysm.effect.CataclysmicEffectsMod;
+import team.heather.cataclysm.effect.client.ImmortalityHeartFeedback;
 
 public record SuppressedDamagePayload(float damage) implements CustomPacketPayload {
 
@@ -19,7 +18,7 @@ public record SuppressedDamagePayload(float damage) implements CustomPacketPaylo
     public static final StreamCodec<RegistryFriendlyByteBuf, SuppressedDamagePayload> STREAM_CODEC = StreamCodec.composite(ByteBufCodecs.FLOAT, SuppressedDamagePayload::damage, SuppressedDamagePayload::new);
 
     public static void initialize() {
-        PayloadTypeRegistry.clientboundPlay().register(PAYLOAD_TYPE, STREAM_CODEC);
+        PayloadTypeRegistry.playS2C().register(PAYLOAD_TYPE, STREAM_CODEC);
     }
 
     @Environment(EnvType.CLIENT)
@@ -35,7 +34,7 @@ public record SuppressedDamagePayload(float damage) implements CustomPacketPaylo
     }
 
     @Override
-    public @NonNull Type<? extends CustomPacketPayload> type() {
+    public Type<? extends CustomPacketPayload> type() {
         return PAYLOAD_TYPE;
     }
 }

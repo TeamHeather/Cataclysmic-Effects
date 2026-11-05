@@ -1,4 +1,4 @@
-package org.heather.cataclysmiceffects.client;
+package team.heather.cataclysm.effect.client;
 
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;

@@ -1,4 +1,4 @@
-package org.heather.cataclysmiceffects.effects;
+package team.heather.cataclysm.effect.effect.beneficial;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;

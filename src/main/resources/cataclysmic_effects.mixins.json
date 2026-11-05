@@ -1,11 +1,13 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "org.heather.effects.mixin",
-  "compatibilityLevel": "JAVA_25",
+  "package": "team.heather.cataclysm.effect.mixin",
+  "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "LivingEntityMixin"
   ],
   "client": [
+    "HudMixin"
   ],
   "injectors": {
     "defaultRequire": 1

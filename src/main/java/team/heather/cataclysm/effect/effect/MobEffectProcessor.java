@@ -1,4 +1,4 @@
-package org.heather.cataclysmiceffects;
+package team.heather.cataclysm.effect.effect;
 
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
@@ -11,8 +11,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import org.heather.cataclysmiceffects.effects.DisperMobEffect;
-import org.heather.cataclysmiceffects.internal.CataclysmicEffectsMod;
+import team.heather.cataclysm.effect.effect.harmful.DisperMobEffect;
+import team.heather.cataclysm.effect.CataclysmicEffectsMod;
 
 import java.util.function.Consumer;
 
@@ -26,10 +26,10 @@ public final class MobEffectProcessor {
     }
 
     private static void registerDisperHandlers() {
-        PlayerBlockBreakEvents.BEFORE.register((_, player, pos, state, _) ->
+        PlayerBlockBreakEvents.BEFORE.register((world, player, pos, state, blockEntity) ->
                 DisperMobEffect.DISPER_BREAKABLE_BLOCKS.contains(state.getBlock()) || !DisperMobEffect.tryApply(player, pos));
 
-        UseBlockCallback.EVENT.register((player, _, hand, hitResult) -> {
+        UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
             ItemStack stack = player.getItemInHand(hand);
 
             if (player.isSpectator() || !(stack.getItem() instanceof BlockItem)) {
