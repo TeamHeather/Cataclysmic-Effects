@@ -55,3 +55,8 @@ The remaining callbacks belong to a specific effect:
 | Pale Corrosion | `AllowPaleCorrosionCallback`, `PaleCorrosionHeartDisabledCallback`, `PaleCorrosionHeartsRestoredCallback` |
 | Vulnerability | `ModifyVulnerabilityDamageCallback` |
 | Disper | `AllowDisperCallback`, `DisperBlockDestroyedCallback` |
+
+## Publishing
+
+Raise `mod_version`, run `./gradlew publish`, then commit and push the `docs`
+folder. GitHub Pages serves it from the `1.21.5` branch.
