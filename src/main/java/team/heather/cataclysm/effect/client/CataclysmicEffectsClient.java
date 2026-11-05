@@ -1,6 +1,7 @@
-package org.heather.cataclysmiceffects;
+package team.heather.cataclysm.effect.client;
 
 import net.fabricmc.api.ClientModInitializer;
+import team.heather.cataclysm.effect.CataclysmicEffectsMod;
 
 public final class CataclysmicEffectsClient implements ClientModInitializer {
 

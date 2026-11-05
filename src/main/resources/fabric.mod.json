@@ -1,24 +1,23 @@
 {
   "schemaVersion": 1,
-  "id": "heather-mob-effects",
+  "id": "cataclysmic_effects",
   "version": "${version}",
-  "name": "HeatherMobEffects",
+  "name": "Cataclysmic-Effects",
   "description": "Adds new mob effects commonly used in Heather events.",
   "authors": [],
   "contact": {},
   "license": "MIT",
-  "icon": "assets/heather-mob-effects/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
-      "org.heather.effects.client.HeatherMobEffectsClient"
+      "team.heather.cataclysm.effect.client.CataclysmicEffectsClient"
     ],
     "main": [
-      "org.heather.effects.HeatherMobEffects"
+      "team.heather.cataclysm.effect.CataclysmicEffectsMod"
     ]
   },
   "mixins": [
-    "heather-mob-effects.mixins.json"
+    "cataclysmic_effects.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=${loader_version}",

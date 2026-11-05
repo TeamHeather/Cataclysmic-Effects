@@ -1,4 +1,4 @@
-package org.heather.cataclysmiceffects.effects;
+package team.heather.cataclysm.effect.effect.harmful;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -10,8 +10,8 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import org.heather.cataclysmiceffects.CataclysmicMobEffects;
-import org.heather.cataclysmiceffects.MobEffectProcessor;
+import team.heather.cataclysm.effect.effect.CataclysmicMobEffects;
+import team.heather.cataclysm.effect.effect.MobEffectProcessor;
 
 import java.util.Set;
 
@@ -48,7 +48,7 @@ public class DisperMobEffect extends MobEffect {
      */
     public static boolean tryApply(Player player, BlockPos blockPos) {
         return MobEffectProcessor.handle(player, CataclysmicMobEffects.DISPER, serverPlayer -> {
-            ServerLevel level = serverPlayer.level();
+            ServerLevel level = serverPlayer.serverLevel();
 
             level.destroyBlock(blockPos, true, serverPlayer);
             sendParticles(level, blockPos);
