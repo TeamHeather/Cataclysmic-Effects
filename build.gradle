@@ -82,10 +82,10 @@ publishing {
 
     // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
     repositories {
-        // Pass -PmavenRepoDir=<path> pointing at a checkout of the gh-pages branch
+        // GitHub Pages serves this folder, commit and push it after publishing
         maven {
             name = "GitHubPages"
-            url = uri(findProperty("mavenRepoDir") ?: layout.buildDirectory.dir("maven-repo"))
+            url = uri("docs")
         }
     }
 }
